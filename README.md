@@ -1,6 +1,6 @@
 # React Photo Gallery Component
 
-If you need help getting setup with Webpack, Babel, or ESLint, [read about the starter kit](https://github.com/simpixelated/react-es6-starter).
+To get started, clone/download this repo (do not fork) and use it to create your own GitHub repo with this exact code on `master`. Commit your changes to a separate branch. When your code is ready to review, great a pull request on your own repo and mention @simpixelated. If you need help getting setup with Webpack, Babel, or ESLint, [read about the starter kit](https://github.com/simpixelated/react-es6-starter).
 
 ## Goal
 
