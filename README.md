@@ -14,9 +14,9 @@ Create a thumbnail gallery component in React that allows for removing photos fr
 * deleting image(s) will prompt the user to confirm
 
 #### Stretch Goals
-* allow "ready only" view to be set via props, which would hide icons and disable sorting
+* allow "read only" view to be set via props, which should hide icons and disable sorting
 * images can be re-ordered
-* **super stretch goal:** images can be reordered by drag and drop
+* **super stretch goal:** images can be re-ordered by drag and drop
 
 #### Development Notes
 * should use [Material-UI](http://www.material-ui.com/) components whenever possible
