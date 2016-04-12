@@ -4,7 +4,7 @@ To get started, clone/download this repo (do not fork) and use it to create your
 
 ## Goal
 
-Create a thumbnail gallery component in React that allows for removing photos from the set. If possible, allow sorting via drag and drop.
+Create a thumbnail gallery component in React that allows for removing photos from the set. Time permitting, allow sorting via drag and drop.
 
 ### Acceptance Criteria
 * photos are displayed as thumbnails in a list or [grid view](http://www.material-ui.com/#/components/grid-list)
@@ -25,16 +25,18 @@ Create a thumbnail gallery component in React that allows for removing photos fr
   * `editable` which will be true/false
   * `onChange` which will be a function
 * changes can all be maintained in `state` and they do not need to persist on refresh, however the changed photo data should be exportable via the `onChange` callback
-* this is not a test of your CSS or design skills
 * `npm run lint` should pass
+* this is not a test of your CSS or design skills
+* component should handle zero to at least twenty photos (do not need to support hundreds or more)
 
 Example usage:
 ```javascript
 const photos = [
-  {
-    fileName: 'sweet photo',
-    fileUrl: 'sweet-photo.png'
-  }
+  _.map(_.range(0, 20), function (num) {
+    return {
+      fileUrl: 'http://loremflickr.com/640/4800?random=' + num
+    };
+  });
 ];
 
 // example onChange handler for persisting photo changes
