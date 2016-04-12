@@ -26,6 +26,7 @@ Create a thumbnail gallery component in React that allows for removing photos fr
   * `onChange` which will be a function
 * changes can all be maintained in `state` and they do not need to persist on refresh, however the changed photo data should be exportable via the `onChange` callback
 * this is not a test of your CSS or design skills
+* `npm run lint` should pass
 
 Example usage:
 ```javascript
