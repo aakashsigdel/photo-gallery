@@ -2,13 +2,13 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Header from '../Components/Header/Header'
 
 class Application extends Component {
   render () {
-    console.log(this.props)
     return (
       <div>
-        {'Hello world!'}
+        <Header />
       </div>
     )
   }

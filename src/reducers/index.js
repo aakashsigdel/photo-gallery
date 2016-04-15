@@ -3,7 +3,7 @@
 import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
-  fake: (state, action) => ({})
+  fake: () => ({})
 })
 
 export default rootReducer

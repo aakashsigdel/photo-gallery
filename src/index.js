@@ -4,6 +4,8 @@ import { Provider } from 'react-redux'
 import configureStore from './store'
 import Application from './Containers'
 
+// import injectTapEventPlugin from 'react-tap-event-plugin'
+
 const _initilizeAppWithProvider = () => {
   return (
     <Provider store={configureStore()}>
