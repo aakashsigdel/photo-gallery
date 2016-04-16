@@ -48,7 +48,7 @@ export default class FAB extends Component {
 
   _renderDeleteMenu ({editable, selectCount}) {
     if (editable) {
-      if (selectCount > 0) {
+      if (selectCount > 1) {
         return <MenuItem
           primaryText={'Delete'}
           onClick={() => this.handleDeleteTap(this.props.photos)}
