@@ -23,7 +23,7 @@ class Application extends Component {
         <div className='main-container'>
           <PhotoGallery
             photos={photos.data}
-            editable
+            editable={photos.permission}
             selectCount={photos.selectCount}
             onChange={this.onChange}
             {...actions}

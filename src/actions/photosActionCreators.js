@@ -1,8 +1,9 @@
 'use strict'
 
 import {
-  TOGGLE_SELECT,
-  DELETE_PHOTOS
+  DELETE_PHOTOS,
+  TOGGLE_PERMISSION,
+  TOGGLE_SELECT
 } from './actionTypes'
 
 export const toggleSelect = (photoId) => {
@@ -16,5 +17,11 @@ export const deletePhotos = (photoIds) => {
   return {
     type: DELETE_PHOTOS,
     photoIds
+  }
+}
+
+export const togglePermission = () => {
+  return {
+    type: TOGGLE_PERMISSION
   }
 }

@@ -34,6 +34,7 @@ export default class PhotoGallery extends Component {
             deletePhotos={this.props.deletePhotos}
             selectCount={this.props.selectCount}
             deletePhotos={this.props.deletePhotos}
+            togglePermission={this.props.togglePermission}
             photos={photos}
           />
         </div>

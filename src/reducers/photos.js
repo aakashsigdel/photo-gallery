@@ -5,8 +5,9 @@ import {
   photosList
 } from '../utility'
 import {
-  TOGGLE_SELECT,
-  DELETE_PHOTOS
+  DELETE_PHOTOS,
+  TOGGLE_PERMISSION,
+  TOGGLE_SELECT
 } from '../actions/actionTypes'
 
 const initialState = {
@@ -14,7 +15,8 @@ const initialState = {
     ...hydratePhotosDataWithAditionalProperites(photosList)
   },
   changed: false,
-  selectCount: 0
+  selectCount: 0,
+  permission: false
 }
 
 const photos = (state = initialState, action) => {
@@ -30,6 +32,11 @@ const photos = (state = initialState, action) => {
             selected: !state.data[action.photoId].selected,
           }
         }
+      }
+    case TOGGLE_PERMISSION:
+      return {
+        ...state,
+        permission: !state.permission
       }
     case DELETE_PHOTOS:
       let tempState = JSON.parse(JSON.stringify(state))

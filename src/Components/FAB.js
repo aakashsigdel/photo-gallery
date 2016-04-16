@@ -38,6 +38,12 @@ export default class FAB extends Component {
       return output
     }, [])
     this.props.deletePhotos(photoIds)
+    this.handleRequestClose()
+  }
+
+  handleTogglePermission () {
+    this.props.togglePermission()
+    this.handleRequestClose()
   }
 
   _renderDeleteMenu ({editable, selectCount}) {
@@ -72,7 +78,10 @@ export default class FAB extends Component {
           onRequestClose={() => this.handleRequestClose()}
         >
           {this._renderDeleteMenu({editable, selectCount})}
-          <MenuItem primaryText={'Toggle Permission'} />
+          <MenuItem
+            primaryText={'Toggle Permission'}
+            onTouchTap={() => this.handleTogglePermission()}
+          />
         </Popover>
       </FloatingActionButton>
     )
