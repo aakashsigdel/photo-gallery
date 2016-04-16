@@ -26,8 +26,9 @@ module.exports = {
         include: path.resolve(__dirname, '../src')
       }, {
         test: /\.css$/, // Only .css files
-        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
-      }
+        loader: 'style!css' // Run both loaders
+      },
+      { test: /\.gif/, loader: 'url?limit=8192' }
     ]
   },
 

@@ -1,0 +1,41 @@
+.main-container {
+  margin: 50px;
+}
+
+.photo-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.gallery-card {
+  width: 250px;
+  height: 220px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  margin-bottom: 50px;
+}
+
+.gallery-image {
+  width: 250px;
+  height: 175px;
+  background-size: contain;
+  background: url('../assets/images/loader.gif') 50% no-repeat;
+}
+
+.image-card-controller {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-card-select-delete {
+  display: inline-block;
+  width: 100px;
+}
+
+.fab {
+  position: fixed;
+  bottom: 50px;
+  right: 100px;
+  z-index: 300;
+}
