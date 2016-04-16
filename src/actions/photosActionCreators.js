@@ -1,21 +1,13 @@
 'use strict'
 
 import {
-  SET_SELECT,
-  SET_UNSELECT,
+  TOGGLE_SELECT,
   DELETE_PHOTOS
 } from './actionTypes'
 
-export const setSelect = (photoId) => {
+export const toggleSelect = (photoId) => {
   return {
-    type: SET_SELECT,
-    photoId
-  }
-}
-
-export const setUnselect = (photoId) => {
-  return {
-    type: SET_UNSELECT,
+    type: TOGGLE_SELECT,
     photoId
   }
 }

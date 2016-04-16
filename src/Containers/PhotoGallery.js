@@ -12,10 +12,12 @@ export default class PhotoGallery extends Component {
     return Object.keys(photos).map((photoKey, index) => {
       return (
         <ImageCard
-          key={index}
+          key={photoKey}
           source={photos[photoKey].fileUrl}
-          order={photos[photoKey].order}
+          photo={photos[photoKey]}
           editable={editable}
+          toggleSelect={this.props.toggleSelect}
+          deletePhoto={(photoId) => this.props.deletePhotos([photoId])}
         />
       )
     })
@@ -29,6 +31,10 @@ export default class PhotoGallery extends Component {
         <div className={'fab'}>
           <FAB
             editable={this.props.editable}
+            deletePhotos={this.props.deletePhotos}
+            selectCount={this.props.selectCount}
+            deletePhotos={this.props.deletePhotos}
+            photos={photos}
           />
         </div>
       </div>

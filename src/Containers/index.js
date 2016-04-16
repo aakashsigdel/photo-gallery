@@ -8,15 +8,24 @@ import PhotoGallery from './PhotoGallery'
 import * as actions from '../actions/photosActionCreators'
 
 class Application extends Component {
+  onChange () {
+    console.log('changed')
+  }
+
   render () {
-    const { photos, actions } = this.props
+    const {
+      actions,
+      photos
+    } = this.props
     return (
       <div>
         <Header />
         <div className='main-container'>
           <PhotoGallery
-            photos={photos}
+            photos={photos.data}
             editable
+            selectCount={photos.selectCount}
+            onChange={this.onChange}
             {...actions}
           />
         </div>
@@ -29,7 +38,7 @@ class Application extends Component {
 const mapStateToProps = (state) => state
 
 const mapDispatchToProps = (dispatch) => {
-  return {actions: bindActionCreators(actions)}
+  return {actions: bindActionCreators(actions, dispatch)}
 }
 
 export default connect(

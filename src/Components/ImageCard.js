@@ -13,7 +13,7 @@ import Checkbox from 'material-ui/lib/checkbox'
 import Image from './Image'
 
 export default class ImageCard extends Component {
-  _renderCardActions (editable) {
+  _renderCardActions (editable, photo) {
     if (editable) {
       return (
         <CardActions>
@@ -27,13 +27,16 @@ export default class ImageCard extends Component {
             </IconButton>
             <Checkbox
               style={{width: 24, height: 24}}
+              onCheck={() => this.props.toggleSelect(photo.photoId)}
+              checked={photo.selected}
             />
             <IconButton
               tooltip='Delete Photo'
               tooltipPosition='bottom-center'
-              style={{paddingTop: 0, height: 35, width: 47}}
+              style={{paddingTop: 0, paddingLeft: 0, height: 35}}
+              onClick={() => this.props.deletePhoto(photo.photoId)}
             >
-              <FontIcon className='material-icons' >delete_forever</FontIcon>
+              <FontIcon className='material-icons' >delete</FontIcon>
             </IconButton>
           </div>
         </CardActions>
@@ -42,7 +45,7 @@ export default class ImageCard extends Component {
   }
 
   render () {
-    const { editable, order } = this.props
+    const { editable, photo } = this.props
     const cardStyle = editable ? null : {height: 175}
     return (
       <Card
@@ -50,9 +53,11 @@ export default class ImageCard extends Component {
         className={'gallery-card'}
       >
         <CardMedia>
-          <Image />
+          <Image
+            source={photo.fileUrl}
+          />
         </CardMedia>
-        {this._renderCardActions(this.props.editable)}
+        {this._renderCardActions(editable, photo)}
       </Card>
     )
   }

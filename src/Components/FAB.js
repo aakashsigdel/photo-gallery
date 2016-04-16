@@ -13,11 +13,11 @@ export default class FAB extends Component {
   constructor () {
     super()
     this.state = {
-      open: false
+      open: false // state for popover
     }
   }
 
-  handleTouchTap (event) {
+  handleMouseEnter (event) {
     this.setState({
       open: true,
       anchorEl: event.currentTarget
@@ -30,17 +30,38 @@ export default class FAB extends Component {
     })
   }
 
-  _renderDeleteMenu (editable) {
+  handleDeleteTap (photos) {
+    const photoIds = Object.keys(photos).reduce((output, photoKey, index) => {
+      if (photos[photoKey].selected) {
+        output.push(photoKey)
+      }
+      return output
+    }, [])
+    this.props.deletePhotos(photoIds)
+  }
+
+  _renderDeleteMenu ({editable, selectCount}) {
     if (editable) {
-      return <MenuItem primaryText={'Delete'} />
+      if (selectCount > 0) {
+        return <MenuItem
+          primaryText={'Delete'}
+          onClick={() => this.handleDeleteTap(this.props.photos)}
+          />
+      } else {
+        return <MenuItem
+          primaryText={'Delete'}
+          disabled
+        />
+      }
     }
   }
 
   render () {
+    const { editable, selectCount } = this.props
     return (
       <FloatingActionButton
         backgroundColor={'#C76767'}
-        onMouseEnter={(event) => this.handleTouchTap(event)}
+        onMouseEnter={(event) => this.handleMouseEnter(event)}
       >
         <ContentAdd color={'white'} />
         <Popover
@@ -50,7 +71,7 @@ export default class FAB extends Component {
           targetOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={() => this.handleRequestClose()}
         >
-          {this._renderDeleteMenu(this.props.editable)}
+          {this._renderDeleteMenu({editable, selectCount})}
           <MenuItem primaryText={'Toggle Permission'} />
         </Popover>
       </FloatingActionButton>
