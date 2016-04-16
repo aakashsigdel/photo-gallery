@@ -8,24 +8,28 @@ import ImageCard from '../Components/ImageCard'
 import FAB from '../Components/FAB'
 
 export default class PhotoGallery extends Component {
-  _renderImageCards (photos) {
-    return photos.map((photo, index) => {
+  _renderImageCards ({photos, editable}) {
+    return Object.keys(photos).map((photoKey, index) => {
       return (
         <ImageCard
           key={index}
-          source={photo.fileUrl}
+          source={photos[photoKey].fileUrl}
+          order={photos[photoKey].order}
+          editable={editable}
         />
       )
     })
   }
 
   render () {
-    const { photos } = this.props
+    const { photos, editable } = this.props
     return (
       <div className={'photo-gallery'}>
-        {this._renderImageCards(photos)}
+        {this._renderImageCards({photos, editable})}
         <div className={'fab'}>
-          <FAB />
+          <FAB
+            editable={this.props.editable}
+          />
         </div>
       </div>
     )

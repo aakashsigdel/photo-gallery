@@ -30,6 +30,12 @@ export default class FAB extends Component {
     })
   }
 
+  _renderDeleteMenu (editable) {
+    if (editable) {
+      return <MenuItem primaryText={'Delete'} />
+    }
+  }
+
   render () {
     return (
       <FloatingActionButton
@@ -44,7 +50,7 @@ export default class FAB extends Component {
           targetOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={() => this.handleRequestClose()}
         >
-          <MenuItem primaryText={'Delete'} />
+          {this._renderDeleteMenu(this.props.editable)}
           <MenuItem primaryText={'Toggle Permission'} />
         </Popover>
       </FloatingActionButton>

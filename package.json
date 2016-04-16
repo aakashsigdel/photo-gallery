@@ -56,7 +56,6 @@
     "eslint-plugin-lodash": "1.2.1",
     "eslint-plugin-react": "4.1.0",
     "html-webpack-plugin": "2.9.0",
-    "remote-redux-devtools": "^0.1.5",
     "style-loader": "0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "1.12.14",

@@ -13,14 +13,9 @@ import Checkbox from 'material-ui/lib/checkbox'
 import Image from './Image'
 
 export default class ImageCard extends Component {
-  render () {
-    return (
-      <Card
-        className={'gallery-card'}
-      >
-        <CardMedia>
-          <Image />
-        </CardMedia>
+  _renderCardActions (editable) {
+    if (editable) {
+      return (
         <CardActions>
           <div className={'image-card-controller'}>
             <IconButton
@@ -42,6 +37,22 @@ export default class ImageCard extends Component {
             </IconButton>
           </div>
         </CardActions>
+      )
+    }
+  }
+
+  render () {
+    const { editable, order } = this.props
+    const cardStyle = editable ? null : {height: 175}
+    return (
+      <Card
+        style={cardStyle}
+        className={'gallery-card'}
+      >
+        <CardMedia>
+          <Image />
+        </CardMedia>
+        {this._renderCardActions(this.props.editable)}
       </Card>
     )
   }

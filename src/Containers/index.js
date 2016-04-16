@@ -2,23 +2,22 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import Header from '../Components/Header'
 import PhotoGallery from './PhotoGallery'
-import _ from 'lodash'
+import * as actions from '../actions/photosActionCreators'
 
 class Application extends Component {
   render () {
-    const photos = _.map(_.range(0, 20), function (num) {
-      return {
-        fileUrl: 'http://loremflickr.com/640/4800?random=' + num
-      }
-    })
+    const { photos, actions } = this.props
     return (
       <div>
         <Header />
         <div className='main-container'>
           <PhotoGallery
             photos={photos}
+            editable
+            {...actions}
           />
         </div>
       </div>
@@ -26,6 +25,14 @@ class Application extends Component {
   }
 }
 
+// connect to redux
+const mapStateToProps = (state) => state
+
+const mapDispatchToProps = (dispatch) => {
+  return {actions: bindActionCreators(actions)}
+}
+
 export default connect(
-  (state) => ({state})
+  mapStateToProps,
+  mapDispatchToProps
 )(Application)
