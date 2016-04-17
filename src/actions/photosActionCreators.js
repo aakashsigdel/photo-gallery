@@ -3,7 +3,8 @@
 import {
   DELETE_PHOTOS,
   TOGGLE_PERMISSION,
-  TOGGLE_SELECT
+  TOGGLE_SELECT,
+  CLEAR_CHANGE
 } from './actionTypes'
 
 export const toggleSelect = (photoId) => {
@@ -23,5 +24,11 @@ export const deletePhotos = (photoIds) => {
 export const togglePermission = () => {
   return {
     type: TOGGLE_PERMISSION
+  }
+}
+
+export const clearChange = () => {
+  return {
+    type: CLEAR_CHANGE
   }
 }

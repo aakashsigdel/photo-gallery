@@ -15,6 +15,10 @@ export default class FAB extends Component {
     this.state = {
       open: false // state for popover
     }
+    this.handleDeleteTap = this.handleDeleteTap.bind(this)
+    this.handleRequestClose = this.handleRequestClose.bind(this)
+    this.handleTogglePermission = this.handleTogglePermission.bind(this)
+    this.handleMouseEnter = this.handleMouseEnter.bind(this)
   }
 
   handleMouseEnter (event) {
@@ -30,14 +34,15 @@ export default class FAB extends Component {
     })
   }
 
-  handleDeleteTap (photos) {
-    const photoIds = Object.keys(photos).reduce((output, photoKey, index) => {
+  handleDeleteTap () {
+    const photos = this.props.photos
+    const photoIds = Object.keys(photos).reduce((output, photoKey) => {
       if (photos[photoKey].selected) {
         output.push(photoKey)
       }
       return output
     }, [])
-    this.props.deletePhotos(photoIds)
+    this.props.handleDialogOpen(photoIds)
     this.handleRequestClose()
   }
 
@@ -49,15 +54,19 @@ export default class FAB extends Component {
   _renderDeleteMenu ({editable, selectCount}) {
     if (editable) {
       if (selectCount > 1) {
-        return <MenuItem
-          primaryText={'Delete'}
-          onClick={() => this.handleDeleteTap(this.props.photos)}
+        return (
+          <MenuItem
+            primaryText={'Delete'}
+            onTouchTap={this.handleDeleteTap}
           />
+        )
       } else {
-        return <MenuItem
-          primaryText={'Delete'}
-          disabled
-        />
+        return (
+          <MenuItem
+            primaryText={'Delete'}
+            disabled
+          />
+        )
       }
     }
   }
@@ -67,7 +76,7 @@ export default class FAB extends Component {
     return (
       <FloatingActionButton
         backgroundColor={'#C76767'}
-        onMouseEnter={(event) => this.handleMouseEnter(event)}
+        onMouseEnter={this.handleMouseEnter}
       >
         <ContentAdd color={'white'} />
         <Popover
@@ -75,15 +84,23 @@ export default class FAB extends Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}
-          onRequestClose={() => this.handleRequestClose()}
+          onRequestClose={this.handleRequestClose}
         >
           {this._renderDeleteMenu({editable, selectCount})}
           <MenuItem
             primaryText={'Toggle Permission'}
-            onTouchTap={() => this.handleTogglePermission()}
+            onTouchTap={this.handleTogglePermission}
           />
         </Popover>
       </FloatingActionButton>
     )
   }
+}
+
+FAB.propTypes = {
+  handleDialogOpen: PropTypes.func.isRequired,
+  togglePermission: PropTypes.func.isRequired,
+  photos: PropTypes.object.isRequired,
+  editable: PropTypes.bool.isRequired,
+  selectCount: PropTypes.number.isRequired
 }

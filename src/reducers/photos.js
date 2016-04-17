@@ -7,7 +7,8 @@ import {
 import {
   DELETE_PHOTOS,
   TOGGLE_PERMISSION,
-  TOGGLE_SELECT
+  TOGGLE_SELECT,
+  CLEAR_CHANGE
 } from '../actions/actionTypes'
 
 const initialState = {
@@ -30,9 +31,9 @@ const photos = (state = initialState, action) => {
           : state.selectCount + 1,
         data: {
           ...state.data,
-          [action.photoId] : {
+          [action.photoId]: {
             ...state.data[action.photoId],
-            selected: !state.data[action.photoId].selected,
+            selected: !state.data[action.photoId].selected
           }
         }
       }
@@ -41,9 +42,14 @@ const photos = (state = initialState, action) => {
         ...state,
         permission: !state.permission
       }
-    case DELETE_PHOTOS:
+    case CLEAR_CHANGE:
+      return {
+        ...state,
+        changed: false
+      }
+    case DELETE_PHOTOS: {
       let tempState = JSON.parse(JSON.stringify(state))
-      action.photoIds.map((photoId, index) => {
+      action.photoIds.map((photoId) => {
         // decrease selectCount if item being delted is selected
         if (tempState.data[photoId].selected) {
           --tempState.selectCount
@@ -51,13 +57,9 @@ const photos = (state = initialState, action) => {
         delete tempState.data[photoId]
       })
 
-      // decrease selectCount when photos are selected and deleted
-      // tempState.selectCount = action.photoIds.length > 1
-      //   ? tempState.selectCount - action.photoIds.length
-      //   : tempState.selectCount
-
       tempState.changed = true
       return tempState
+    }
     default:
       return state
   }

@@ -13,6 +13,21 @@ import Checkbox from 'material-ui/lib/checkbox'
 import Image from './Image'
 
 export default class ImageCard extends Component {
+  constructor () {
+    super()
+    // pre binding methods
+    this.handleOnCheck = this.handleOnCheck.bind(this)
+    this.handleOnTouchTapDeletePhoto = this.handleOnTouchTapDeletePhoto.bind(this)
+  }
+
+  handleOnCheck () {
+    this.props.toggleSelect(this.props.photo.photoId)
+  }
+
+  handleOnTouchTapDeletePhoto () {
+    this.props.handleDialogOpen([this.props.photo.photoId])
+  }
+
   _renderCardActions (editable, photo) {
     if (editable) {
       return (
@@ -27,14 +42,14 @@ export default class ImageCard extends Component {
             </IconButton>
             <Checkbox
               style={{width: 24, height: 24}}
-              onCheck={() => this.props.toggleSelect(photo.photoId)}
+              onCheck={this.handleOnCheck}
               checked={photo.selected}
             />
             <IconButton
               tooltip='Delete Photo'
               tooltipPosition='bottom-center'
               style={{paddingTop: 0, paddingLeft: 0, height: 35}}
-              onClick={() => this.props.deletePhoto(photo.photoId)}
+              onTouchTap={this.handleOnTouchTapDeletePhoto}
             >
               <FontIcon className='material-icons' >delete</FontIcon>
             </IconButton>
@@ -61,4 +76,11 @@ export default class ImageCard extends Component {
       </Card>
     )
   }
+}
+
+ImageCard.propTypes = {
+  handleDialogOpen: PropTypes.func.isRequired,
+  toggleSelect: PropTypes.func.isRequired,
+  editable: PropTypes.bool.isRequired,
+  photo: PropTypes.object.isRequired
 }

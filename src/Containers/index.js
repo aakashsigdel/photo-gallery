@@ -1,6 +1,9 @@
 'use strict'
 
-import React, { Component } from 'react'
+import React, {
+  Component,
+  PropTypes
+} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Header from '../Components/Header'
@@ -9,30 +12,37 @@ import Message from '../Components/Message'
 import * as actions from '../actions/photosActionCreators'
 
 class Application extends Component {
-  onChange () {
-    console.log('changed')
-  }
   componentDidUpdate () {
     if (this.props.photos.changed) {
       this.onChange()
     }
   }
 
+  onChange () {
+    this.props.actions.clearChange()
+    // console.log(this.props.photos)
+    // now photos with order data can be exported
+    // as this.props.photos.data
+  }
+
   _renderPhotoGallery ({photos, actions}) {
     if (Object.keys(photos.data).length === 0) {
-      return <Message
-        message='Sorry! No Phots to display!'
-        width={300}
-      />
+      return (
+        <Message
+          message='Sorry! No Phots to display!'
+          width={300}
+        />
+      )
     } else {
-      return <PhotoGallery
-        photos={photos.data}
-        editable={photos.permission}
-        selectCount={photos.selectCount}
-        onChange={this.onChange}
-        {...actions}
-      />
-
+      return (
+        <PhotoGallery
+          photos={photos.data}
+          editable={photos.permission}
+          selectCount={photos.selectCount}
+          onChange={this.onChange}
+          {...actions}
+        />
+      )
     }
   }
 
@@ -50,6 +60,11 @@ class Application extends Component {
       </div>
     )
   }
+}
+
+Application.propTypes = {
+  actions: PropTypes.object,
+  photos: PropTypes.object
 }
 
 // connect to redux
