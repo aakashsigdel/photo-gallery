@@ -9,9 +9,21 @@ import { bindActionCreators } from 'redux'
 import Header from '../Components/Header'
 import PhotoGallery from './PhotoGallery'
 import Message from '../Components/Message'
+import ConfirmDialog from '../Components/ConfirmDialog'
 import * as actions from '../actions/photosActionCreators'
 
 class Application extends Component {
+  constructor () {
+    super()
+    this.state = {
+      openDialog: false,
+      photoIdsToBeDeleted: []
+    }
+    this.handleDialogOpen = this.handleDialogOpen.bind(this)
+    this.handleDialogClose = this.handleDialogClose.bind(this)
+    this.handleDialogConfirm = this.handleDialogConfirm.bind(this)
+  }
+
   componentDidUpdate () {
     if (this.props.photos.changed) {
       this.onChange()
@@ -40,10 +52,29 @@ class Application extends Component {
           editable={photos.permission}
           selectCount={photos.selectCount}
           onChange={this.onChange}
+          handleDialogOpen={this.handleDialogOpen}
           {...actions}
         />
       )
     }
+  }
+
+  handleDialogClose () {
+    this.setState({
+      openDialog: false
+    })
+  }
+
+  handleDialogOpen (photoIds) {
+    this.setState({
+      openDialog: true,
+      photoIdsToBeDeleted: photoIds
+    })
+  }
+
+  handleDialogConfirm () {
+    this.props.actions.deletePhotos(this.state.photoIdsToBeDeleted)
+    this.handleDialogClose()
   }
 
   render () {
@@ -53,10 +84,21 @@ class Application extends Component {
     } = this.props
     return (
       <div>
-        <Header />
+        <Header
+          selectCount={photos.selectCount}
+          handleDialogOpen={this.handleDialogOpen}
+          resetSelectCount={actions.resetSelectCount}
+          togglePermission={actions.togglePermission}
+          photos={photos.data}
+        />
         <div className='main-container'>
           {this._renderPhotoGallery({photos, actions})}
         </div>
+        <ConfirmDialog
+          handleClose={this.handleDialogClose}
+          handleConfirm={this.handleDialogConfirm}
+          openDialog={this.state.openDialog}
+        />
       </div>
     )
   }

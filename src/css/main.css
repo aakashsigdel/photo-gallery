@@ -1,11 +1,11 @@
 .main-container {
-  margin: 50px;
+  margin: auto;
+  margin-top: 50px;
 }
 
 .photo-gallery {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .gallery-card {

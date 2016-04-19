@@ -36,7 +36,15 @@ export default class ImageCard extends Component {
             <IconButton
               tooltip='Drag Image'
               tooltipPosition='bottom-center'
-              style={{paddingTop: 0, height: 35, width: 35}}
+              style={{
+                paddingTop: 0,
+                height: 35,
+                width: 35,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}
+              className={'image-card-drag'}
             >
               <FontIcon className='material-icons' >reorder</FontIcon>
             </IconButton>
@@ -57,6 +65,7 @@ export default class ImageCard extends Component {
         </CardActions>
       )
     }
+    return null
   }
 
   render () {

@@ -4,7 +4,9 @@ import {
   DELETE_PHOTOS,
   TOGGLE_PERMISSION,
   TOGGLE_SELECT,
-  CLEAR_CHANGE
+  CLEAR_CHANGE,
+  SET_ORDER,
+  RESET_SELECT_COUNT
 } from './actionTypes'
 
 export const toggleSelect = (photoId) => {
@@ -30,5 +32,19 @@ export const togglePermission = () => {
 export const clearChange = () => {
   return {
     type: CLEAR_CHANGE
+  }
+}
+
+// indexChange = {oldIndex: 0, nextIndex: 1}
+export const setOrder = (indexChange) => {
+  return {
+    type: SET_ORDER,
+    indexChange
+  }
+}
+
+export const resetSelectCount = () => {
+  return {
+    type: RESET_SELECT_COUNT
   }
 }

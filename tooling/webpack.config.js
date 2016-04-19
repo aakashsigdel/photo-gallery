@@ -11,6 +11,8 @@ module.exports = {
     path.resolve(__dirname, '../src/index.js')
   ],
 
+  devtool: 'source-map',
+
   //  Bundle to a ./build/public/bundle.js file.
   output: {
     path: path.resolve(__dirname, '../dist'),
