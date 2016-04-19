@@ -1,9 +1,8 @@
-'use strict'
-
 import { combineReducers } from 'redux'
+import photos from './photos'
 
 const rootReducer = combineReducers({
-  fake: (state, action) => ({})
+  photos
 })
 
 export default rootReducer

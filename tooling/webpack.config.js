@@ -11,6 +11,8 @@ module.exports = {
     path.resolve(__dirname, '../src/index.js')
   ],
 
+  devtool: 'source-map',
+
   //  Bundle to a ./build/public/bundle.js file.
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -27,7 +29,8 @@ module.exports = {
       }, {
         test: /\.css$/, // Only .css files
         loader: 'style!css' // Run both loaders
-      }
+      },
+      { test: /\.gif/, loader: 'url?limit=8192' }
     ]
   },
 

@@ -2,12 +2,11 @@ import {
   createStore,
   compose
 } from 'redux'
-import devTools from 'remote-redux-devtools'
 import rootReducer from '../reducers'
 
 const configureStore = (initialState) => {
   const enhancer = compose(
-    devTools()
+    // window.devToolsExtension ? window.devToolsExtension() : undefined
   )
   return createStore(rootReducer, initialState, enhancer)
 }
