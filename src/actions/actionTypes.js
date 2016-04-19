@@ -1,5 +1,3 @@
-'use strict'
-
 export const TOGGLE_SELECT = 'TOGGLE_SELECT'
 export const DELETE_PHOTOS = 'DELETE_PHOTOS'
 export const TOGGLE_PERMISSION = 'TOGGLE_PERMISSION'

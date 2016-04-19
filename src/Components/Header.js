@@ -1,5 +1,3 @@
-'use strict'
-
 import React, {
   Component,
   PropTypes
@@ -16,17 +14,13 @@ export default class Header extends Component {
   }
 
   _renderRightElement (selectCount) {
-    return selectCount > 0
-      ? <FlatButton
+    return (
+      <FlatButton
         labelStyle={{color: this.props.color}}
-        onTouchTap={this._handleDeleteTap}
-        label='Delete'
-        />
-          : <FlatButton
-            labelStyle={{color: this.props.color}}
-            onTouchTap={this.props.togglePermission}
-            label='Toggle Permission'
-            />
+        onTouchTap={selectCount > 0 ? this._handleDeleteTap : this.props.togglePermission}
+        label={selectCount > 0 ? 'Delete' : 'Toggle Permission'}
+      />
+    )
   }
 
   _renderLeftElement (selectCount) {

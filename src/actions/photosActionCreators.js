@@ -1,5 +1,3 @@
-'use strict'
-
 import {
   DELETE_PHOTOS,
   TOGGLE_PERMISSION,

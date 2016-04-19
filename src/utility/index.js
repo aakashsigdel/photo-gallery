@@ -1,4 +1,3 @@
-'use strict'
 import _ from 'lodash'
 
 export const photosList = _.map(_.range(0, 20), function (num) {
